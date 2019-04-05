@@ -1,12 +1,4 @@
 on_actions = {
-	on_startup = {
-		effect = {
-			every_country = {
-				open_ledger = yes
-			}
-		}
-	}
-
 	on_daily = {
 		effect = {
 			if = {

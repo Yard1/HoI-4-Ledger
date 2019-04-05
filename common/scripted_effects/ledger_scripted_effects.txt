@@ -1,11 +1,62 @@
-create_sorted_array_highest = {
+create_sorted_array_ideology = {
 	clear_array = array_to_sort
-	clear_array = country_array
-	every_country = {
+	for_each_scope_loop = {
+		array = country_array
 		add_to_array = {
 			ROOT.array_to_sort = THIS
 		}
 	}
+	clear_array = country_array
+	while_loop_effect = {
+		limit = { check_variable = { array_to_sort^num > 0 } }
+		for_each_scope_loop = {
+			array = array_to_sort
+			if = {
+				limit = {
+					NOT = {
+						is_in_array = {
+							array = ROOT.country_array
+							value = THIS
+						}
+					}
+				}
+				set_variable = { ROOT.current_country = THIS }
+				set_temp_variable = { break = 0 }
+			}
+		}
+		var:current_country = {
+			remove_from_array = { ROOT.array_to_sort = THIS }
+			country_event = ledger.1 #fires get_same_ideology
+		}
+		clear_variable = ROOT.current_country
+	}
+}
+
+get_same_ideology = {
+	every_country = {
+		limit = {
+			has_government = ROOT
+			NOT = {
+				is_in_array = {
+					array = FROM.country_array
+					value = THIS
+				}
+			}
+		}
+		add_to_array = { FROM.country_array = THIS }
+		remove_from_array = { FROM.array_to_sort = THIS }
+	}
+}
+
+create_sorted_array_highest = {
+	clear_array = array_to_sort
+	for_each_scope_loop = {
+		array = country_array
+		add_to_array = {
+			ROOT.array_to_sort = THIS
+		}
+	}
+	clear_array = country_array
 	while_loop_effect = {
 		limit = { check_variable = { array_to_sort^num > 0 } }
 		get_highest = yes
@@ -344,11 +395,46 @@ update_misc_vars = {
 			PREV.num_controlled_states_including_subjects = num_controlled_states
 		}
 	}
+	if = {
+		limit = { is_faction_leader = yes }
+		set_variable = { faction_battalions = num_battalions }
+		set_variable = { faction_ships = num_ships }
+		set_variable = { faction_air = deployed_air_force_size }
+		set_variable = { faction_industry = num_of_factories }
+		set_variable = { faction_controlled_states = num_of_controlled_states }
+		for_each_scope_loop = {
+			array = allies
+			add_to_variable = { PREV.faction_battalions = num_battalions }
+			add_to_variable = { PREV.faction_ships = num_ships }
+			add_to_variable = { PREV.faction_air = deployed_air_force_size }
+			add_to_variable = { PREV.faction_industry = num_of_factories }
+			add_to_variable = { PREV.faction_controlled_states = num_of_controlled_states }
+		}
+	}
+	else = {
+		clear_variable = faction_battalions
+		clear_variable = faction_ships
+		clear_variable = faction_air
+		clear_variable = faction_industry
+		clear_variable = faction_controlled_states
+	}
 }
 
 open_ledger = {
+	update_ledger_country_array = yes
+	set_variable = { ledger_open = 1 }
+}
+
+update_ledger_country_array = {
 	clear_array = country_array
 	every_country = {
+		limit = { is_major = yes }
+		add_to_array = {
+			PREV.country_array = THIS
+		}
+	}
+	every_country = {
+		limit = { is_major = no }
 		add_to_array = {
 			PREV.country_array = THIS
 		}
@@ -356,5 +442,17 @@ open_ledger = {
 	get_deployed_air_force_size = yes
 	update_misc_vars = yes
 	get_strategic_building_levels = yes
-	set_variable = { ledger_open = 1 }
+}
+
+update_ledger_faction_array = {
+	clear_array = country_array
+	every_country = {
+		limit = { is_faction_leader = yes }
+		add_to_array = {
+			PREV.country_array = THIS
+		}
+	}
+	get_deployed_air_force_size = yes
+	update_misc_vars = yes
+	get_strategic_building_levels = yes
 }

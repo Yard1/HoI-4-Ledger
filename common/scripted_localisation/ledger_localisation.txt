@@ -1,3 +1,31 @@
+defined_text = {
+    name = GetLedgerTitle
+    text = {
+        trigger = { check_variable = { ledger_open = 2 } }
+        localization_key = "LEDGER_TITLE_LAND"
+    }
+    text = {
+        trigger = { check_variable = { ledger_open = 3 } }
+        localization_key = "LEDGER_TITLE_NAVY_AIR"
+    }
+    text = {
+        trigger = { check_variable = { ledger_open = 4 } }
+        localization_key = "LEDGER_TITLE_INDUSTRY"
+    }
+    text = {
+        trigger = { check_variable = { ledger_open = 5 } }
+        localization_key = "LEDGER_TITLE_TERRITORY"
+    }
+    text = {
+        trigger = { check_variable = { ledger_open = 6 } }
+        localization_key = "LEDGER_TITLE_FACTIONS"
+    }
+    text = {
+        localization_key = "LEDGER_TITLE"
+    }
+
+}
+
 defined_text = { 
     name = LedgerGetVariableToSort
     text = {
@@ -129,6 +157,27 @@ defined_text = {
         localization_key = "num_controlled_states_including_subjects"
     }
     text = {
-        localization_key = "[GetName]"
+        trigger = { check_variable = { sort_var = 33 } }
+        localization_key = "faction_members^num"
+    }
+    text = {
+        trigger = { check_variable = { sort_var = 34 } }
+        localization_key = "faction_battalions"
+    }
+    text = {
+        trigger = { check_variable = { sort_var = 35 } }
+        localization_key = "faction_ships"
+    }
+    text = {
+        trigger = { check_variable = { sort_var = 36 } }
+        localization_key = "faction_air"
+    }
+    text = {
+        trigger = { check_variable = { sort_var = 37 } }
+        localization_key = "faction_industry"
+    }
+    text = {
+        trigger = { check_variable = { sort_var = 38 } }
+        localization_key = "faction_controlled_states"
     }
 }

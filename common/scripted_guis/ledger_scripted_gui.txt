@@ -1,5 +1,26 @@
 scripted_gui = {
 
+	ledger_open_button_sg = {
+		window_name = "ledger_open_container"
+		parent_window_name = "MapmodesInterface_Ingame"
+		visible = {
+			is_ai = no
+		}
+
+		ai_enabled = {
+           always = no
+       }
+
+	   effects = {
+		   ledger_open_btn_click = {
+				if = {
+					limit = { NOT = { has_variable = ledger_open } }
+					open_ledger = yes
+				}
+		   }
+	   }
+	}
+
 	ledger_sg = {
 		window_name = "ledger_container"
 
@@ -37,25 +58,45 @@ scripted_gui = {
 				add_to_variable = {
 					ledger_open = 1
 				}
-				clamp_variable = {
-					var = ledger_open
-					min = 1
-					max = 5
+				if = {
+					limit = { check_variable = { ledger_open > 6 } }
+					set_variable = { ledger_open = 1 }
+				}
+				if = {
+					limit = { check_variable = { ledger_open = 6 } }
+					update_ledger_faction_array = yes
+				}
+				else_if = {
+					limit = { check_variable = { ledger_open < 6 } }
+					update_ledger_country_array = yes
 				}
 			}
 			previous_page_click = {
 				subtract_from_variable = {
 					ledger_open = 1
 				}
-				clamp_variable = {
-					var = ledger_open
-					min = 1
-					max = 5
+				if = {
+					limit = { check_variable = { ledger_open < 1 } }
+					set_variable = { ledger_open = 6 }
+				}
+				if = {
+					limit = { check_variable = { ledger_open = 6 } }
+					update_ledger_faction_array = yes
+				}
+				else_if = {
+					limit = { check_variable = { ledger_open < 6 } }
+					update_ledger_country_array = yes
 				}
 			}
 		}
 
 		effects = {
+			country_header_click = {
+				update_ledger_country_array = yes
+			}
+			ideology_header_click = {
+				create_sorted_array_ideology = yes
+			}
 			stability_header_click = {
 				set_temp_variable = { sort_var = 1 }
 				create_sorted_array_highest = yes
@@ -80,9 +121,155 @@ scripted_gui = {
 				set_temp_variable = { sort_var = 6 }
 				create_sorted_array_highest = yes
 			}
+			num_battalions_header_click = {
+				set_temp_variable = { sort_var = 7 }
+				create_sorted_array_highest = yes
+			}
+			num_divisions_header_click = {
+				set_temp_variable = { sort_var = 8 }
+				create_sorted_array_highest = yes
+			}
+			manpower_header_click = {
+				set_temp_variable = { sort_var = 9 }
+				create_sorted_array_highest = yes
+			}
+			army_xp_header_click = {
+				set_temp_variable = { sort_var = 10 }
+				create_sorted_array_highest = yes
+			}
+			command_power_header_click = {
+				set_temp_variable = { sort_var = 11 }
+				create_sorted_array_highest = yes
+			}
+			casualties_header_click = {
+				set_temp_variable = { sort_var = 12 }
+				create_sorted_array_highest = yes
+			}
+			land_doctrine_level_header_click = {
+				set_temp_variable = { sort_var = 13 }
+				create_sorted_array_highest = yes
+			}
+			navy_header_4_click = {
+				set_temp_variable = { sort_var = 14 }
+				create_sorted_array_highest = yes
+			}
+			air_header_4_click = {
+				set_temp_variable = { sort_var = 15 }
+				create_sorted_array_highest = yes
+			}
+			navy_xp_header_click = {
+				set_temp_variable = { sort_var = 16 }
+				create_sorted_array_highest = yes
+			}
+			air_xp_header_click = {
+				set_temp_variable = { sort_var = 17 }
+				create_sorted_array_highest = yes
+			}
+			num_of_nukes_header_click = {
+				set_temp_variable = { sort_var = 18 }
+				create_sorted_array_highest = yes
+			}
+			nuclear_reactors_header_click = {
+				set_temp_variable = { sort_var = 19 }
+				create_sorted_array_highest = yes
+			}
+			rocket_sites_header_click = {
+				set_temp_variable = { sort_var = 20 }
+				create_sorted_array_highest = yes
+			}
+			faction_header_5_click = {
+				set_temp_variable = { sort_var = 21 }
+				create_sorted_array_highest = yes
+			}
+			num_civilian_factories_header_click = {
+				set_temp_variable = { sort_var = 22 }
+				create_sorted_array_highest = yes
+			}
+			consumer_goods_header_click = {
+				set_temp_variable = { sort_var = 23 }
+				create_sorted_array_highest = yes
+			}
+			military_factories_header_click = {
+				set_temp_variable = { sort_var = 24 }
+				create_sorted_array_highest = yes
+			}
+			naval_factories_header_click = {
+				set_temp_variable = { sort_var = 25 }
+				create_sorted_array_highest = yes
+			}
+			industry_header_5_click = {
+				set_temp_variable = { sort_var = 4 }
+				create_sorted_array_highest = yes
+			}
+			fuel_header_click = {
+				set_temp_variable = { sort_var = 26 }
+				create_sorted_array_highest = yes
+			}
+			faction_header_6_click = {
+				set_temp_variable = { sort_var = 21 }
+				create_sorted_array_highest = yes
+			}
+			owned_states_header_click = {
+				set_temp_variable = { sort_var = 27 }
+				create_sorted_array_highest = yes
+			}
+			controlled_states_header_click = {
+				set_temp_variable = { sort_var = 28 }
+				create_sorted_array_highest = yes
+			}
+			owned_controlled_states_header_click = {
+				set_temp_variable = { sort_var = 29 }
+				create_sorted_array_highest = yes
+			}
+			occupied_states_header_click = {
+				set_temp_variable = { sort_var = 30 }
+				create_sorted_array_highest = yes
+			}
+			core_states_header_click = {
+				set_temp_variable = { sort_var = 31 }
+				create_sorted_array_highest = yes
+			}
+			controlled_states_including_subjects_header_click = {
+				set_temp_variable = { sort_var = 32 }
+				create_sorted_array_highest = yes
+			}
+
+			faction_header_7_click = {
+				update_ledger_faction_array = yes
+			}
+			faction_members_header_click = {
+				set_temp_variable = { sort_var = 33 }
+				create_sorted_array_highest = yes
+			}
+			faction_battalions_header_click = {
+				set_temp_variable = { sort_var = 34 }
+				create_sorted_array_highest = yes
+			}
+			faction_ships_header_click = {
+				set_temp_variable = { sort_var = 35 }
+				create_sorted_array_highest = yes
+			}
+			faction_airforce_header_click = {
+				set_temp_variable = { sort_var = 36 }
+				create_sorted_array_highest = yes
+			}
+			faction_industry_header_click = {
+				set_temp_variable = { sort_var = 37 }
+				create_sorted_array_highest = yes
+			}
+			faction_states_header_click = {
+				set_temp_variable = { sort_var = 38 }
+				create_sorted_array_highest = yes
+			}
 		}
 
 		triggers = {
+			major_overlay_visible = {
+				is_major = yes
+			}
+			country_header_visible = {
+				check_variable = { ledger_open < 6 }
+			}
 			ideology_header_visible = {
 				check_variable = { ledger_open = 1 }
 			}
@@ -126,6 +313,9 @@ scripted_gui = {
 			land_doctrine_level_header_visible = {
 				check_variable = { ledger_open = 2 }
 			}
+			land_doctrine_level_header_txt_visible = {
+				check_variable = { ledger_open = 2 }
+			}
 
 			navy_header_4_visible = {
 				check_variable = { ledger_open = 3 }
@@ -155,7 +345,13 @@ scripted_gui = {
 			num_civilian_factories_header_visible = {
 				check_variable = { ledger_open = 4 }
 			}
+			num_civilian_factories_header_txt_visible = {
+				check_variable = { ledger_open = 4 }
+			}
 			consumer_goods_header_visible = {
+				check_variable = { ledger_open = 4 }
+			}
+			military_factories_header_txt_visible = {
 				check_variable = { ledger_open = 4 }
 			}
 			military_factories_header_visible = {
@@ -174,23 +370,69 @@ scripted_gui = {
 			faction_header_6_visible = {
 				check_variable = { ledger_open = 5 }
 			}
+			owned_states_header_txt_visible = {
+				check_variable = { ledger_open = 5 }
+			}
 			owned_states_header_visible = {
+				check_variable = { ledger_open = 5 }
+			}
+			controlled_states_header_txt_visible = {
 				check_variable = { ledger_open = 5 }
 			}
 			controlled_states_header_visible = {
 				check_variable = { ledger_open = 5 }
 			}
+			owned_controlled_states_header_txt_visible = {
+				check_variable = { ledger_open = 5 }
+			}
 			owned_controlled_states_header_visible = {
+				check_variable = { ledger_open = 5 }
+			}
+			occupied_states_header_txt_visible = {
 				check_variable = { ledger_open = 5 }
 			}
 			occupied_states_header_visible = {
 				check_variable = { ledger_open = 5 }
 			}
+			core_states_header_txt_visible = {
+				check_variable = { ledger_open = 5 }
+			}
 			core_states_header_visible = {
+				check_variable = { ledger_open = 5 }
+			}
+			controlled_states_including_subjects_header_txt_visible = {
 				check_variable = { ledger_open = 5 }
 			}
 			controlled_states_including_subjects_header_visible = {
 				check_variable = { ledger_open = 5 }
+			}
+
+			faction_header_7_visible = {
+				check_variable = { ledger_open = 6 }
+			}
+			faction_leader_header_visible = {
+				check_variable = { ledger_open = 6 }
+			}
+			faction_members_header_visible = {
+				check_variable = { ledger_open = 6 }
+			}
+			faction_battalions_header_visible = {
+				check_variable = { ledger_open = 6 }
+			}
+			faction_ships_header_visible = {
+				check_variable = { ledger_open = 6 }
+			}
+			faction_airforce_header_visible = {
+				check_variable = { ledger_open = 6 }
+			}
+			faction_industry_header_visible = {
+				check_variable = { ledger_open = 6 }
+			}
+			faction_states_header_txt_visible = {
+				check_variable = { ledger_open = 6 }
+			}
+			faction_states_header_visible = {
+				check_variable = { ledger_open = 6 }
 			}
 		}
 	}
