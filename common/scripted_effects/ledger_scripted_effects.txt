@@ -113,6 +113,22 @@ get_deployed_air_force_size = {
 		if = {
 			limit = {
 				has_deployed_air_force_size = {
+					size > 49999
+				}
+			}
+			set_variable = { deployed_air_force_size = 50000 }
+			while_loop_effect = {
+				limit = { 
+					has_deployed_air_force_size = {
+						size > deployed_air_force_size
+					}
+				}
+				add_to_variable = { deployed_air_force_size = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				has_deployed_air_force_size = {
 					size > 39999
 				}
 			}
