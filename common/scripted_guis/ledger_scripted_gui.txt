@@ -1,0 +1,199 @@
+scripted_gui = {
+
+	ledger_sg = {
+		window_name = "ledger_container"
+
+		visible = {
+			is_ai = no
+			check_variable = { ledger_open > 0 }
+		}
+
+		ai_enabled = {
+           always = no
+       }
+
+		# we have two dynamic lists for this scripted gui
+		dynamic_lists = {
+			# this is the main grid that contains added countries
+			country_list = {
+				array = country_array
+				change_scope = yes
+				entry_container = "ledger_country_entry_[?Root.ledger_open]"
+			}
+		}
+
+        properties = {
+			#change flag textures to actual flag texture
+            flag = {
+                image = "[This.GetFlag]"
+            }
+		}
+		
+		effects = {
+			close_click = {
+				clear_variable = ledger_open
+			}
+			next_page_click = {
+				add_to_variable = {
+					ledger_open = 1
+				}
+				clamp_variable = {
+					var = ledger_open
+					min = 1
+					max = 5
+				}
+			}
+			previous_page_click = {
+				subtract_from_variable = {
+					ledger_open = 1
+				}
+				clamp_variable = {
+					var = ledger_open
+					min = 1
+					max = 5
+				}
+			}
+		}
+
+		effects = {
+			stability_header_click = {
+				set_temp_variable = { sort_var = 1 }
+				create_sorted_array_highest = yes
+			}
+			war_support_header_click = {
+				set_temp_variable = { sort_var = 2 }
+				create_sorted_array_highest = yes
+			}
+			political_power_header_click = {
+				set_temp_variable = { sort_var = 3 }
+				create_sorted_array_highest = yes
+			}
+			industry_header_2_click = {
+				set_temp_variable = { sort_var = 4 }
+				create_sorted_array_highest = yes
+			}
+			population_header_click = {
+				set_temp_variable = { sort_var = 5 }
+				create_sorted_array_highest = yes
+			}
+			research_slots_header_click = {
+				set_temp_variable = { sort_var = 6 }
+				create_sorted_array_highest = yes
+			}
+		}
+
+		triggers = {
+			ideology_header_visible = {
+				check_variable = { ledger_open = 1 }
+			}
+			stability_header_visible = {
+				check_variable = { ledger_open = 1 }
+			}
+			war_support_header_visible = {
+				check_variable = { ledger_open = 1 }
+			}
+			political_power_header_visible = {
+				check_variable = { ledger_open = 1 }
+			}
+			industry_header_2_visible = {
+				check_variable = { ledger_open = 1 }
+			}
+			population_header_visible = {
+				check_variable = { ledger_open = 1 }
+			}
+			research_slots_header_visible = {
+				check_variable = { ledger_open = 1 }
+			}
+
+			num_battalions_header_visible = {
+				check_variable = { ledger_open = 2 }
+			}
+			num_divisions_header_visible = {
+				check_variable = { ledger_open = 2 }
+			}
+			manpower_header_visible = {
+				check_variable = { ledger_open = 2 }
+			}
+			army_xp_header_visible = {
+				check_variable = { ledger_open = 2 }
+			}
+			command_power_header_visible = {
+				check_variable = { ledger_open = 2 }
+			}
+			casualties_header_visible = {
+				check_variable = { ledger_open = 2 }
+			}
+			land_doctrine_level_header_visible = {
+				check_variable = { ledger_open = 2 }
+			}
+
+			navy_header_4_visible = {
+				check_variable = { ledger_open = 3 }
+			}
+			air_header_4_visible = {
+				check_variable = { ledger_open = 3 }
+			}
+			navy_xp_header_visible = {
+				check_variable = { ledger_open = 3 }
+			}
+			air_xp_header_visible = {
+				check_variable = { ledger_open = 3 }
+			}
+			num_of_nukes_header_visible = {
+				check_variable = { ledger_open = 3 }
+			}
+			nuclear_reactors_header_visible = {
+				check_variable = { ledger_open = 3 }
+			}
+			rocket_sites_header_visible = {
+				check_variable = { ledger_open = 3 }
+			}
+
+			faction_header_5_visible = {
+				check_variable = { ledger_open = 4 }
+			}
+			num_civilian_factories_header_visible = {
+				check_variable = { ledger_open = 4 }
+			}
+			consumer_goods_header_visible = {
+				check_variable = { ledger_open = 4 }
+			}
+			military_factories_header_visible = {
+				check_variable = { ledger_open = 4 }
+			}
+			naval_factories_header_visible = {
+				check_variable = { ledger_open = 4 }
+			}
+			industry_header_5_visible = {
+				check_variable = { ledger_open = 4 }
+			}
+			fuel_header_visible = {
+				check_variable = { ledger_open = 4 }
+			}
+
+			faction_header_6_visible = {
+				check_variable = { ledger_open = 5 }
+			}
+			owned_states_header_visible = {
+				check_variable = { ledger_open = 5 }
+			}
+			controlled_states_header_visible = {
+				check_variable = { ledger_open = 5 }
+			}
+			owned_controlled_states_header_visible = {
+				check_variable = { ledger_open = 5 }
+			}
+			occupied_states_header_visible = {
+				check_variable = { ledger_open = 5 }
+			}
+			core_states_header_visible = {
+				check_variable = { ledger_open = 5 }
+			}
+			controlled_states_including_subjects_header_visible = {
+				check_variable = { ledger_open = 5 }
+			}
+		}
+	}
+	
+}
+

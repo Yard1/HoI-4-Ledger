@@ -1,0 +1,360 @@
+create_sorted_array_highest = {
+	clear_array = array_to_sort
+	clear_array = country_array
+	every_country = {
+		add_to_array = {
+			ROOT.array_to_sort = THIS
+		}
+	}
+	while_loop_effect = {
+		limit = { check_variable = { array_to_sort^num > 0 } }
+		get_highest = yes
+		clear_variable = ROOT.max
+		clear_variable = ROOT.max_index
+	}
+}
+
+get_highest = {
+	meta_effect = {
+		text = {
+			for_each_loop = {
+				array = array_to_sort
+				index = idx
+				var:v = {
+					if = {
+						limit = { 
+							OR = {
+								NOT = { has_variable = ROOT.max }
+								check_variable = { [VARIABLE] > ROOT.max }
+							}
+						}
+						set_variable = { ROOT.max = [VARIABLE] }
+						set_variable = { ROOT.max_index = idx }
+					}
+				}
+			}
+		}
+		VARIABLE = "[ROOT.LedgerGetVariableToSort]"
+	}
+	add_to_array = {
+		country_array = array_to_sort^ROOT.max_index
+	}
+	remove_from_array = {
+		array = array_to_sort
+		index = ROOT.max_index
+	}
+}
+
+get_deployed_air_force_size = {
+	if = {
+		limit = {
+			NOT = {
+				AND = {
+					has_deployed_air_force_size = {
+						size > deployed_air_force_size
+					}
+					has_deployed_air_force_size = {
+						size < deployed_air_force_size
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_deployed_air_force_size = {
+					size > 39999
+				}
+			}
+			set_variable = { deployed_air_force_size = 40000 }
+			while_loop_effect = {
+				limit = { 
+					has_deployed_air_force_size = {
+						size > deployed_air_force_size
+					}
+				}
+				add_to_variable = { deployed_air_force_size = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				has_deployed_air_force_size = {
+					size > 29999
+				}
+			}
+			set_variable = { deployed_air_force_size = 30000 }
+			while_loop_effect = {
+				limit = { 
+					has_deployed_air_force_size = {
+						size > deployed_air_force_size
+					}
+				}
+				add_to_variable = { deployed_air_force_size = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				has_deployed_air_force_size = {
+					size > 19999
+				}
+			}
+			set_variable = { deployed_air_force_size = 20000 }
+			while_loop_effect = {
+				limit = { 
+					has_deployed_air_force_size = {
+						size > deployed_air_force_size
+					}
+				}
+				add_to_variable = { deployed_air_force_size = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				has_deployed_air_force_size = {
+					size > 9999
+				}
+			}
+			set_variable = { deployed_air_force_size = 10000 }
+			while_loop_effect = {
+				limit = { 
+					has_deployed_air_force_size = {
+						size > deployed_air_force_size
+					}
+				}
+				add_to_variable = { deployed_air_force_size = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				has_deployed_air_force_size = {
+					size > 8999
+				}
+			}
+			set_variable = { deployed_air_force_size = 9000 }
+			while_loop_effect = {
+				limit = { 
+					has_deployed_air_force_size = {
+						size > deployed_air_force_size
+					}
+				}
+				add_to_variable = { deployed_air_force_size = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				has_deployed_air_force_size = {
+					size > 7999
+				}
+			}
+			set_variable = { deployed_air_force_size = 8000 }
+			while_loop_effect = {
+				limit = { 
+					has_deployed_air_force_size = {
+						size > deployed_air_force_size
+					}
+				}
+				add_to_variable = { deployed_air_force_size = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				has_deployed_air_force_size = {
+					size > 6999
+				}
+			}
+			set_variable = { deployed_air_force_size = 7000 }
+			while_loop_effect = {
+				limit = { 
+					has_deployed_air_force_size = {
+						size > deployed_air_force_size
+					}
+				}
+				add_to_variable = { deployed_air_force_size = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				has_deployed_air_force_size = {
+					size > 5999
+				}
+			}
+			set_variable = { deployed_air_force_size = 6000 }
+			while_loop_effect = {
+				limit = { 
+					has_deployed_air_force_size = {
+						size > deployed_air_force_size
+					}
+				}
+				add_to_variable = { deployed_air_force_size = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				has_deployed_air_force_size = {
+					size > 4999
+				}
+			}
+			set_variable = { deployed_air_force_size = 5000 }
+			while_loop_effect = {
+				limit = { 
+					has_deployed_air_force_size = {
+						size > deployed_air_force_size
+					}
+				}
+				add_to_variable = { deployed_air_force_size = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				has_deployed_air_force_size = {
+					size > 3999
+				}
+			}
+			set_variable = { deployed_air_force_size = 4000 }
+			while_loop_effect = {
+				limit = { 
+					has_deployed_air_force_size = {
+						size > deployed_air_force_size
+					}
+				}
+				add_to_variable = { deployed_air_force_size = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				has_deployed_air_force_size = {
+					size > 2999
+				}
+			}
+			set_variable = { deployed_air_force_size = 3000 }
+			while_loop_effect = {
+				limit = { 
+					has_deployed_air_force_size = {
+						size > deployed_air_force_size
+					}
+				}
+				add_to_variable = { deployed_air_force_size = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				has_deployed_air_force_size = {
+					size > 1999
+				}
+			}
+			set_variable = { deployed_air_force_size = 2000 }
+			while_loop_effect = {
+				limit = { 
+					has_deployed_air_force_size = {
+						size > deployed_air_force_size
+					}
+				}
+				add_to_variable = { deployed_air_force_size = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				has_deployed_air_force_size = {
+					size > 999
+				}
+			}
+			set_variable = { deployed_air_force_size = 1000 }
+			while_loop_effect = {
+				limit = { 
+					has_deployed_air_force_size = {
+						size > deployed_air_force_size
+					}
+				}
+				add_to_variable = { deployed_air_force_size = 1 }
+			}
+		}
+		else = {
+			set_variable = { deployed_air_force_size = 0 }
+			while_loop_effect = {
+				limit = { 
+					has_deployed_air_force_size = {
+						size > deployed_air_force_size
+					}
+				}
+				add_to_variable = { deployed_air_force_size = 1 }
+			}
+		}
+	}
+}
+
+get_strategic_building_levels = {
+	every_owned_state = {
+		limit = { is_controlled_by = PREV }
+		add_to_variable = { PREV.nuclear_reactors = building_level@nuclear_reactor }
+		add_to_variable = { PREV.rocket_sites = building_level@rocket_site }
+	}
+}
+
+update_misc_vars = {
+	set_variable = {
+		consumer_goods_factories = num_of_civilian_factories
+	}
+	multiply_variable = {
+		consumer_goods_factories = modifier@consumer_goods_factor
+	}
+	set_variable = {
+		effective_civilian_factories = num_of_civilian_factories
+	}
+	subtract_from_variable = {
+		effective_civilian_factories = consumer_goods_factories
+	}
+	set_temp_variable = {
+		civ_factories_multiplier = modifier@production_speed_buildings_factor
+	}
+	multiply_temp_variable = {
+		civ_factories_multiplier = effective_civilian_factories
+	}
+	add_to_variable = {
+		effective_civilian_factories = civ_factories_multiplier
+	}
+	set_variable = {
+		effective_military_factories = num_of_military_factories
+	}
+	set_temp_variable = {
+		mil_factories_multiplier = modifier@industrial_capacity_factory
+	}
+	multiply_temp_variable = {
+		mil_factories_multiplier = effective_military_factories
+	}
+	add_to_variable = {
+		effective_military_factories = mil_factories_multiplier
+	}
+	set_variable = {
+		effective_naval_factories = num_of_naval_factories
+	}
+	set_temp_variable = {
+		nav_factories_multiplier = modifier@industrial_capacity_dockyard
+	}
+	multiply_temp_variable = {
+		nav_factories_multiplier = effective_naval_factories
+	}
+	add_to_variable = {
+		effective_naval_factories = nav_factories_multiplier
+	}
+	set_variable = {
+		num_controlled_states_including_subjects = num_controlled_states
+	}
+	for_each_scope_loop = {
+		array = subjects
+		add_to_variable = {
+			PREV.num_controlled_states_including_subjects = num_controlled_states
+		}
+	}
+}
+
+open_ledger = {
+	clear_array = country_array
+	every_country = {
+		add_to_array = {
+			PREV.country_array = THIS
+		}
+	}
+	get_deployed_air_force_size = yes
+	update_misc_vars = yes
+	get_strategic_building_levels = yes
+	set_variable = { ledger_open = 1 }
+}
