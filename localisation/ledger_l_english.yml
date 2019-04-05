@@ -16,7 +16,7 @@
  LEDGER_INDUSTRY:0 "Industry"
  LEDGER_PROVINCES:0 "Owned States"
  LEDGER_COUNTRY_TT:0 ""
- LEDGER_SORT_TT:0 "Click to sort in descending order"
+ LEDGER_SORT_TT:0 "Click to sort"
  LEDGER_GROUP_TT:0 "Click to group"
  LEDGER_REFRESH_TT:0 "Click to refresh the list"
 

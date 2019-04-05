@@ -48,7 +48,7 @@ get_same_ideology = {
 	}
 }
 
-create_sorted_array_highest = {
+create_sorted_array = {
 	clear_array = array_to_sort
 	for_each_scope_loop = {
 		array = country_array
@@ -57,11 +57,22 @@ create_sorted_array_highest = {
 		}
 	}
 	clear_array = country_array
-	while_loop_effect = {
-		limit = { check_variable = { array_to_sort^num > 0 } }
-		get_highest = yes
-		clear_variable = ROOT.max
-		clear_variable = ROOT.max_index
+	if = {
+		limit = { check_variable = { last_sort_var = sort_var } }
+		while_loop_effect = {
+			limit = { check_variable = { array_to_sort^num > 0 } }
+			get_lowest = yes
+		}
+		clear_variable = last_sort_var
+	}
+	else = {
+		while_loop_effect = {
+			limit = { check_variable = { array_to_sort^num > 0 } }
+			get_highest = yes
+		}
+		set_variable = {
+			last_sort_var = sort_var
+		}
 	}
 }
 
@@ -94,6 +105,41 @@ get_highest = {
 		array = array_to_sort
 		index = ROOT.max_index
 	}
+	clear_variable = ROOT.max
+	clear_variable = ROOT.max_index
+}
+
+get_lowest = {
+	meta_effect = {
+		text = {
+			for_each_loop = {
+				array = array_to_sort
+				index = idx
+				var:v = {
+					if = {
+						limit = { 
+							OR = {
+								NOT = { has_variable = ROOT.min }
+								check_variable = { [VARIABLE] < ROOT.min }
+							}
+						}
+						set_variable = { ROOT.min = [VARIABLE] }
+						set_variable = { ROOT.min_index = idx }
+					}
+				}
+			}
+		}
+		VARIABLE = "[ROOT.LedgerGetVariableToSort]"
+	}
+	add_to_array = {
+		country_array = array_to_sort^ROOT.min_index
+	}
+	remove_from_array = {
+		array = array_to_sort
+		index = ROOT.min_index
+	}
+	clear_variable = ROOT.min
+	clear_variable = ROOT.min_index
 }
 
 get_deployed_air_force_size = {
@@ -445,30 +491,33 @@ update_ledger_country_array = {
 	clear_array = country_array
 	every_country = {
 		limit = { is_major = yes }
+		get_deployed_air_force_size = yes
+		update_misc_vars = yes
+		get_strategic_building_levels = yes
 		add_to_array = {
 			PREV.country_array = THIS
 		}
 	}
 	every_country = {
 		limit = { is_major = no }
+		get_deployed_air_force_size = yes
+		update_misc_vars = yes
+		get_strategic_building_levels = yes
 		add_to_array = {
 			PREV.country_array = THIS
 		}
 	}
-	get_deployed_air_force_size = yes
-	update_misc_vars = yes
-	get_strategic_building_levels = yes
 }
 
 update_ledger_faction_array = {
 	clear_array = country_array
 	every_country = {
 		limit = { is_faction_leader = yes }
+		get_deployed_air_force_size = yes
+		update_misc_vars = yes
+		get_strategic_building_levels = yes
 		add_to_array = {
 			PREV.country_array = THIS
 		}
 	}
-	get_deployed_air_force_size = yes
-	update_misc_vars = yes
-	get_strategic_building_levels = yes
 }
