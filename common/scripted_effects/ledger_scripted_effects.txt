@@ -488,6 +488,7 @@ open_ledger = {
 }
 
 update_ledger_country_array = {
+	clear_variable = last_sort_var
 	clear_array = country_array
 	every_country = {
 		limit = { is_major = yes }
@@ -510,6 +511,7 @@ update_ledger_country_array = {
 }
 
 update_ledger_faction_array = {
+	clear_variable = last_sort_var
 	clear_array = country_array
 	every_country = {
 		limit = { is_faction_leader = yes }
