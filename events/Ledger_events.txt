@@ -1,4 +1,4 @@
-add_namespace = ledger
+﻿add_namespace = ledger
 
 # Test Event 1
 country_event = {
