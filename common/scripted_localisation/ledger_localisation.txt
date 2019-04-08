@@ -181,3 +181,15 @@ defined_text = {
         localization_key = "faction_controlled_states"
     }
 }
+
+defined_text = {
+    name = LedgerGetQSCompare
+    text = {
+        trigger = { check_variable = { ledger_qs_compare = 1 } }
+        localization_key = "less_than_or_equals"
+    }
+    text = {
+        localization_key = "greater_than_or_equals"
+    }
+
+}
