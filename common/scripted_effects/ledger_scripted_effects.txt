@@ -30,6 +30,7 @@ create_sorted_array_ideology = {
 		}
 		clear_variable = ROOT.current_country
 	}
+	clear_variable = last_sort_var
 }
 
 get_same_ideology = {
