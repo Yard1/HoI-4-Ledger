@@ -21,7 +21,7 @@ create_sorted_array_ideology = {
 					}
 				}
 				set_variable = { ROOT.current_country = THIS }
-				set_temp_variable = { break = 0 }
+				set_temp_variable = { break = 1 }
 			}
 		}
 		var:current_country = {
